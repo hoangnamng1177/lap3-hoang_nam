@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "author": "Nam",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultra",
+      "top": -110,
+      "left": 230,
+      "attrs": { "distance": "100" }
+    },
+    { "type": "wokwi-ds18b20", "id": "temp", "top": 85.27, "left": 378.48, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 137.8,
+      "left": 219.95,
+      "rotate": 270,
+      "attrs": { "value": "4700" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 33.6,
+      "left": -202.15,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledPump",
+      "top": -61.2,
+      "left": -197.8,
+      "attrs": { "color": "blue", "label": "Bom" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 32.2,
+      "left": -116.05,
+      "rotate": 270,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledValve",
+      "top": -61.2,
+      "left": -140.2,
+      "attrs": { "color": "red", "label": "Van" }
+    }
+  ],
+  "connections": [
+    [ "ultra:VCC", "esp:VIN", "red", [ "v255.5", "h-300", "v-81.5" ] ],
+    [ "ultra:GND", "esp:GND.1", "black", [ "v197.9", "h-230" ] ],
+    [ "ultra:TRIG", "esp:D5", "green", [ "v111.5", "h-210" ] ],
+    [ "ultra:ECHO", "esp:D18", "orange", [ "v92.3", "h-215.7", "v4.9" ] ],
+    [ "temp:VCC", "esp:3V3", "red", [ "v86.4", "h-301.9" ] ],
+    [ "temp:GND", "esp:GND.1", "black", [ "v48", "h-282.7" ] ],
+    [ "temp:DQ", "esp:D4", "yellow", [ "v67.2", "h-288", "v-81.6" ] ],
+    [ "r1:1", "esp:3V3", "red", [ "h-90.7" ] ],
+    [ "r1:2", "esp:D4", "yellow", [ "h-1.2", "v1.2", "h-147.1" ] ],
+    [ "esp:D25", "r2:1", "blue", [ "h-30" ] ],
+    [ "r2:2", "ledPump:A", "blue", [ "h0" ] ],
+    [ "ledPump:C", "esp:GND.2", "black", [ "v182.4", "h187.8" ] ],
+    [ "esp:D26", "r3:1", "red", [ "h-20" ] ],
+    [ "r3:2", "ledValve:A", "red", [ "h0" ] ],
+    [ "ledValve:C", "esp:GND.2", "black", [ "v182.4", "h130.2" ] ]
+  ],
+  "dependencies": {}
+}
